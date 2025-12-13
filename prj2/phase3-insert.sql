@@ -1,0 +1,258 @@
+-- ================================================
+-- Phase 3: Insert Sample Data & Test Queries
+-- ================================================
+
+-- ================================================
+-- Insert Data into Branch Table
+-- ================================================
+INSERT INTO branch (branch_code, branch_name, address, phone, working_hours, manager_name) VALUES
+('BR001', 'شعبه مرکزی تهران', 'تهران، خیابان ولیعصر، پلاک 100', '02122334455', '08:00-16:00', 'علی احمدی'),
+('BR002', 'شعبه اصفهان', 'اصفهان، میدان نقش جهان', '03132445566', '08:00-16:00', 'سارا محمدی'),
+('BR003', 'شعبه شیراز', 'شیراز، خیابان زند، نبش کوچه 5', '07136778899', '08:30-15:30', 'محمد رضایی'),
+('BR004', 'شعبه مشهد', 'مشهد، بلوار وکیل آباد', '05138990011', '08:00-16:00', 'فاطمه کریمی'),
+('BR005', 'شعبه تبریز', 'تبریز، خیابان آزادی', '04133445566', '08:00-15:30', 'حسین نوری'),
+('BR006', 'شعبه کرج', 'کرج، میدان آزادگان', '02634556677', '08:30-16:00', 'مریم صادقی'),
+('BR007', 'شعبه قم', 'قم، خیابان معلم', '02537889900', '08:00-15:00', 'رضا موسوی'),
+('BR008', 'شعبه اهواز', 'اهواز، خیابان کیانپارس', '06133667788', '08:30-16:00', 'زهرا جعفری'),
+('BR009', 'شعبه رشت', 'رشت، خیابان امام خمینی', '01333778899', '08:00-15:30', 'امیر حسینی'),
+('BR010', 'شعبه کرمان', 'کرمان، میدان ارگ', '03432889900', '08:30-16:00', 'نرگس اکبری');
+
+-- ================================================
+-- Insert Data into Customer Table
+-- ================================================
+INSERT INTO customer (national_id, first_name, last_name, birth_date, phone, address, email) VALUES
+('1234567890', 'احمد', 'محمدی', '1985-05-15', '09121234567', 'تهران، خیابان انقلاب', 'ahmad.m@email.com'),
+('2345678901', 'مریم', 'احمدی', '1990-08-20', '09131234568', 'اصفهان، خیابان چهارباغ', 'maryam.a@email.com'),
+('3456789012', 'علی', 'رضایی', '1988-03-10', '09141234569', 'شیراز، خیابان قصرالدشت', 'ali.r@email.com'),
+('4567890123', 'فاطمه', 'کریمی', '1992-11-25', '09151234570', 'مشهد، خیابان امام رضا', 'fatemeh.k@email.com'),
+('5678901234', 'حسین', 'نوری', '1987-07-08', '09161234571', 'تبریز، خیابان فردوسی', 'hossein.n@email.com'),
+('6789012345', 'زهرا', 'محمدپور', '1995-02-14', '09171234572', 'کرج، خیابان طالقانی', 'zahra.mp@email.com'),
+('7890123456', 'مهدی', 'حسینی', '1983-12-30', '09181234573', 'قم، خیابان صفائیه', 'mehdi.h@email.com'),
+('8901234567', 'سارا', 'جعفری', '1991-09-18', '09191234574', 'اهواز، خیابان نادری', 'sara.j@email.com'),
+('9012345678', 'رضا', 'موسوی', '1989-06-22', '09201234575', 'رشت، خیابان گلسار', 'reza.m@email.com'),
+('0123456789', 'نرگس', 'صادقی', '1994-04-05', '09211234576', 'کرمان، خیابان جمهوری', 'narges.s@email.com'),
+('1122334455', 'امیر', 'اکبری', '1986-01-12', '09221234577', 'تهران، خیابان سعادت آباد', 'amir.a@email.com'),
+('2233445566', 'لیلا', 'رحیمی', '1993-10-08', '09231234578', 'اصفهان، خیابان کاوه', 'leila.r@email.com');
+
+-- ================================================
+-- Insert Data into Employee Table
+-- ================================================
+INSERT INTO employee (national_id, first_name, last_name, position, hire_date, salary, branch_code) VALUES
+('1111111111', 'کامران', 'زارعی', 'Branch Manager', '2015-01-10', 50000000, 'BR001'),
+('2222222222', 'نیلوفر', 'کاظمی', 'Customer Service', '2018-03-15', 30000000, 'BR001'),
+('3333333333', 'بهزاد', 'عباسی', 'Loan Officer', '2017-06-20', 35000000, 'BR002'),
+('4444444444', 'مینا', 'حیدری', 'Teller', '2019-09-12', 25000000, 'BR002'),
+('5555555555', 'سعید', 'فرهادی', 'Financial Advisor', '2016-02-28', 40000000, 'BR003'),
+('6666666666', 'پریسا', 'نظری', 'Customer Service', '2020-05-05', 28000000, 'BR003'),
+('7777777777', 'داود', 'شریفی', 'IT Support', '2015-11-18', 45000000, 'BR004'),
+('8888888888', 'سمیرا', 'باقری', 'Accountant', '2018-08-22', 38000000, 'BR005'),
+('9999999999', 'فرزاد', 'توکلی', 'Security Officer', '2019-01-30', 32000000, 'BR006'),
+('1010101010', 'شیدا', 'رستمی', 'HR Manager', '2017-04-14', 42000000, 'BR007');
+
+-- ================================================
+-- Insert Data into Account Table
+-- ================================================
+INSERT INTO account (account_number, account_type, balance, opening_date, status, customer_id, branch_code) VALUES
+('1001000100010001', 'SAVINGS', 15000000, '2020-01-15', 'ACTIVE', 1, 'BR001'),
+('1001000100010002', 'CHECKING', 5000000, '2020-02-20', 'ACTIVE', 1, 'BR001'),
+('2002000200020001', 'SAVINGS', 25000000, '2019-05-10', 'ACTIVE', 2, 'BR002'),
+('3003000300030001', 'CURRENT', 8000000, '2021-03-18', 'ACTIVE', 3, 'BR003'),
+('3003000300030002', 'SAVINGS', 12000000, '2021-04-22', 'ACTIVE', 3, 'BR003'),
+('4004000400040001', 'DEPOSIT', 50000000, '2018-11-30', 'ACTIVE', 4, 'BR004'),
+('5005000500050001', 'SAVINGS', 3000000, '2022-01-05', 'ACTIVE', 5, 'BR005'),
+('6006000600060001', 'CHECKING', 7500000, '2020-08-14', 'ACTIVE', 6, 'BR006'),
+('7007000700070001', 'SAVINGS', 20000000, '2019-07-22', 'ACTIVE', 7, 'BR007'),
+('8008000800080001', 'CURRENT', 6000000, '2021-10-10', 'ACTIVE', 8, 'BR008'),
+('9009000900090001', 'SAVINGS', 18000000, '2020-12-01', 'ACTIVE', 9, 'BR009'),
+('1010001000100001', 'CHECKING', 4500000, '2022-02-28', 'ACTIVE', 10, 'BR010'),
+('1111001100110001', 'SAVINGS', 100000, '2022-06-15', 'ACTIVE', 11, 'BR001'),
+('1212001200120001', 'DEPOSIT', 30000000, '2021-09-20', 'ACTIVE', 12, 'BR002');
+
+-- ================================================
+-- Insert Data into Transaction Table
+-- ================================================
+INSERT INTO transaction (transaction_type, amount, transaction_date, description, source_account, destination_account, status) VALUES
+('DEPOSIT', 5000000, '2024-01-10 10:30:00', 'واریز نقدی', '1001000100010001', NULL, 'COMPLETED'),
+('WITHDRAWAL', 1000000, '2024-01-12 14:20:00', 'برداشت از عابربانک', '1001000100010001', NULL, 'COMPLETED'),
+('TRANSFER', 2000000, '2024-01-15 09:45:00', 'انتقال وجه به حساب دیگر', '1001000100010001', '2002000200020001', 'COMPLETED'),
+('PAYMENT', 500000, '2024-01-18 16:10:00', 'پرداخت قبض برق', '2002000200020001', NULL, 'COMPLETED'),
+('TRANSFER', 3000000, '2024-01-20 11:00:00', 'انتقال وجه', '4004000400040001', '3003000300030001', 'COMPLETED'),
+('DEPOSIT', 10000000, '2024-01-25 08:30:00', 'واریز حقوق', '7007000700070001', NULL, 'COMPLETED'),
+('WITHDRAWAL', 2500000, '2024-02-01 13:15:00', 'برداشت نقدی', '6006000600060001', NULL, 'COMPLETED'),
+('TRANSFER', 1500000, '2024-02-05 10:20:00', 'پرداخت اقساط', '9009000900090001', '1001000100010002', 'COMPLETED'),
+('PAYMENT', 800000, '2024-02-10 15:40:00', 'پرداخت قبض آب', '5005000500050001', NULL, 'COMPLETED'),
+('DEPOSIT', 4000000, '2024-02-15 09:00:00', 'واریز', '8008000800080001', NULL, 'COMPLETED'),
+('TRANSFER', 5000000, '2024-11-20 11:30:00', 'انتقال وجه', '7007000700070001', '1001000100010001', 'COMPLETED'),
+('WITHDRAWAL', 3000000, '2024-11-25 14:00:00', 'برداشت', '4004000400040001', NULL, 'COMPLETED'),
+('DEPOSIT', 2000000, '2024-12-01 10:15:00', 'واریز نقدی', '1111001100110001', NULL, 'COMPLETED'),
+('TRANSFER', 1000000, '2024-12-05 16:45:00', 'انتقال', '2002000200020001', '3003000300030002', 'COMPLETED'),
+('PAYMENT', 600000, '2024-12-08 12:30:00', 'پرداخت قبض گاز', '1010001000100001', NULL, 'COMPLETED');
+
+-- ================================================
+-- Insert Data into Card Table  
+-- ================================================
+INSERT INTO card (card_number, expiry_date, cvv, card_type, status, issue_date, account_number) VALUES
+('6037991234567890', '2026-12-31', '123', 'DEBIT', 'ACTIVE', '2020-01-15', '1001000100010001'),
+('6037991234567891', '2025-06-30', '456', 'DEBIT', 'ACTIVE', '2020-02-20', '1001000100010002'),
+('6037992345678901', '2027-03-31', '789', 'DEBIT', 'ACTIVE', '2019-05-10', '2002000200020001'),
+('6037993456789012', '2026-09-30', '234', 'DEBIT', 'ACTIVE', '2021-03-18', '3003000300030001'),
+('6037994567890123', '2025-12-31', '567', 'CREDIT', 'ACTIVE', '2018-11-30', '4004000400040001'),
+('6037995678901234', '2027-06-30', '890', 'DEBIT', 'ACTIVE', '2022-01-05', '5005000500050001'),
+('6037996789012345', '2026-03-31', '345', 'DEBIT', 'ACTIVE', '2020-08-14', '6006000600060001'),
+('6037997890123456', '2028-12-31', '678', 'CREDIT', 'ACTIVE', '2019-07-22', '7007000700070001'),
+('6037998901234567', '2025-09-30', '901', 'DEBIT', 'ACTIVE', '2021-10-10', '8008000800080001'),
+('6037999012345678', '2027-12-31', '432', 'DEBIT', 'ACTIVE', '2020-12-01', '9009000900090001'),
+('6037991111111111', '2026-06-30', '765', 'PREPAID', 'ACTIVE', '2022-02-28', '1010001000100001'),
+('6037992222222222', '2025-03-31', '198', 'DEBIT', 'BLOCKED', '2022-06-15', '1111001100110001');
+
+-- ================================================
+-- Insert Data into Loan Table
+-- ================================================
+INSERT INTO loan (loan_amount, loan_type, interest_rate, start_date, end_date, status, remaining_amount, customer_id, account_number) VALUES
+(50000000, 'HOME', 18.50, '2023-01-15', '2033-01-15', 'ACTIVE', 45000000, 1, '1001000100010001'),
+(20000000, 'CAR', 20.00, '2023-06-20', '2028-06-20', 'ACTIVE', 16000000, 2, '2002000200020001'),
+(10000000, 'PERSONAL', 22.00, '2024-03-10', '2026-03-10', 'ACTIVE', 8500000, 3, '3003000300030001'),
+(30000000, 'BUSINESS', 19.00, '2022-11-05', '2027-11-05', 'ACTIVE', 22000000, 4, '4004000400040001'),
+(15000000, 'EDUCATION', 15.00, '2024-09-01', '2029-09-01', 'ACTIVE', 14000000, 5, '5005000500050001'),
+(25000000, 'HOME', 18.00, '2023-05-20', '2033-05-20', 'ACTIVE', 23500000, 7, '7007000700070001'),
+(8000000, 'CAR', 21.00, '2024-02-15', '2029-02-15', 'ACTIVE', 7200000, 8, '8008000800080001'),
+(12000000, 'PERSONAL', 23.00, '2024-07-10', '2026-07-10', 'ACTIVE', 10000000, 9, '9009000900090001'),
+(5000000, 'EDUCATION', 16.00, '2024-10-01', '2029-10-01', 'ACTIVE', 4800000, 11, '1111001100110001'),
+(40000000, 'BUSINESS', 19.50, '2023-03-25', '2028-03-25', 'ACTIVE', 32000000, 12, '1212001200120001');
+
+-- ================================================
+-- Insert Data into Payment Table
+-- ================================================
+INSERT INTO payment (payment_type, amount, payment_date, bill_number, status, description, account_number) VALUES
+('ELECTRICITY', 850000, '2024-01-15 10:00:00', 'ELEC-2024-001', 'COMPLETED', 'قبض برق دی ماه', '1001000100010001'),
+('WATER', 320000, '2024-01-20 14:30:00', 'WATER-2024-001', 'COMPLETED', 'قبض آب دی ماه', '2002000200020001'),
+('GAS', 450000, '2024-02-05 09:15:00', 'GAS-2024-001', 'COMPLETED', 'قبض گاز بهمن ماه', '3003000300030001'),
+('PHONE', 280000, '2024-02-10 16:45:00', 'PHONE-2024-001', 'COMPLETED', 'قبض تلفن', '4004000400040001'),
+('INTERNET', 350000, '2024-02-15 11:20:00', 'NET-2024-001', 'COMPLETED', 'اینترنت ماهانه', '5005000500050001'),
+('ELECTRICITY', 920000, '2024-02-20 13:00:00', 'ELEC-2024-002', 'COMPLETED', 'قبض برق بهمن ماه', '6006000600060001'),
+('INSURANCE', 1500000, '2024-03-01 10:30:00', 'INS-2024-001', 'COMPLETED', 'بیمه خودرو', '7007000700070001'),
+('TAX', 2000000, '2024-03-10 15:00:00', 'TAX-2024-001', 'COMPLETED', 'مالیات', '8008000800080001'),
+('WATER', 310000, '2024-11-25 09:45:00', 'WATER-2024-011', 'COMPLETED', 'قبض آب آبان', '9009000900090001'),
+('ELECTRICITY', 880000, '2024-12-05 14:20:00', 'ELEC-2024-012', 'COMPLETED', 'قبض برق آذر ماه', '1010001000100001');
+
+-- ================================================
+-- TEST QUERIES
+-- ================================================
+
+-- Query 1: نمایش اطلاعات تمام حساب‌های متعلق به یک مشتری مشخص
+SELECT 
+    c.first_name || ' ' || c.last_name AS customer_name,
+    a.account_number,
+    a.account_type,
+    a.balance, 
+    a.status,
+    b.branch_name
+FROM account a
+JOIN customer c ON a.customer_id = c.customer_id
+JOIN branch b ON a.branch_code = b.branch_code
+WHERE c.customer_id = 1
+ORDER BY a.opening_date;
+
+-- Query 2: نمایش 5 تراکنش اخیر مربوط به یک حساب مشخص بر اساس تاریخ تراکنش
+SELECT 
+    transaction_id,
+    transaction_type,
+    amount,
+    transaction_date,
+    description,
+    status
+FROM transaction 
+WHERE source_account = '1001000100010001' 
+   OR destination_account = '1001000100010001'
+ORDER BY transaction_date DESC
+LIMIT 5;
+
+-- Query 3: نمایش مشتریانی که بیش از یک حساب فعال دارند
+SELECT 
+    c.customer_id,
+    c.first_name || ' ' || c.last_name AS customer_name,
+    c.phone,
+    COUNT(a.account_number) AS active_accounts
+FROM customer c
+JOIN account a ON c.customer_id = a.customer_id
+WHERE a.status = 'ACTIVE'
+GROUP BY c.customer_id, c.first_name, c.last_name, c.phone
+HAVING COUNT(a.account_number) > 1
+ORDER BY active_accounts DESC;
+
+-- Query 4: نمایش لیست تمام حساب‌هایی که موجودی آن‌ها کمتر از یک مقدار مشخص (مثلاً 500,000 تومان) است
+SELECT 
+    a.account_number,
+    c.first_name || ' ' || c.last_name AS customer_name,
+    a.account_type,
+    a.balance,
+    b.branch_name
+FROM account a
+JOIN customer c ON a.customer_id = c.customer_id
+JOIN branch b ON a.branch_code = b.branch_code
+WHERE a.balance < 500000
+ORDER BY a.balance ASC;
+
+-- Query 5: نمایش تعداد تراکنش‌های انجام شده در یک بازه زمانی مشخص (مثلاً یک هفته گذشته یا یک ماه گذشته)
+-- برای یک ماه گذشته:
+SELECT 
+    DATE_TRUNC('day', transaction_date) AS transaction_day,
+    COUNT(*) AS transaction_count,
+    SUM(amount) AS total_amount
+FROM transaction
+WHERE transaction_date >= CURRENT_DATE - INTERVAL '30 days'
+  AND status = 'COMPLETED'
+GROUP BY DATE_TRUNC('day', transaction_date)
+ORDER BY transaction_day DESC;
+
+-- برای یک هفته گذشته:
+SELECT 
+    TO_CHAR(transaction_date, 'YYYY-MM-DD') AS transaction_date_formatted,
+    transaction_type,
+    COUNT(*) AS count,
+    SUM(amount) AS total_amount
+FROM transaction
+WHERE transaction_date >= CURRENT_DATE - INTERVAL '7 days'
+  AND status = 'COMPLETED'
+GROUP BY TO_CHAR(transaction_date, 'YYYY-MM-DD'), transaction_type
+ORDER BY transaction_date_formatted DESC, transaction_type;
+
+-- ================================================
+-- Additional Useful Queries
+-- ================================================
+
+-- Query 6: مشتریان با بیشترین موجودی کل
+SELECT 
+    c.customer_id,
+    c.first_name || ' ' || c.last_name AS customer_name,
+    COUNT(a.account_number) AS account_count,
+    SUM(a.balance) AS total_balance
+FROM customer c
+JOIN account a ON c.customer_id = a.customer_id
+WHERE a.status = 'ACTIVE'
+GROUP BY c.customer_id, c.first_name, c.last_name
+ORDER BY total_balance DESC
+LIMIT 10;
+
+-- Query 7: وام‌های فعال با بیشترین مبلغ باقیمانده
+SELECT 
+    l.loan_id,
+    c.first_name || ' ' || c.last_name AS customer_name,
+    l.loan_type,
+    l.loan_amount,
+    l.remaining_amount,
+    l.interest_rate,
+    l.end_date
+FROM loan l
+JOIN customer c ON l.customer_id = c.customer_id
+WHERE l.status = 'ACTIVE'
+ORDER BY l.remaining_amount DESC;
+
+-- ================================================
+-- Display Success Message
+-- ================================================
+DO $$
+BEGIN
+    RAISE NOTICE 'تمام داده‌ها با موفقیت درج شدند!';
+    RAISE NOTICE 'تست کوئری‌ها آماده اجرا هستند';
+END $$;
