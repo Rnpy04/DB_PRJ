@@ -140,33 +140,33 @@ JOIN customer c ON a.customer_id = c.customer_id
 WHERE c.customer_id = 1;
 
 -- نمایش 5 تراکنش اخیر مربوط به یک حساب مشخص بر اساس تاریخ تراکنش
-SELECT t.*
-FROM transactions t
-WHERE source_account = '1001000100010001' OR destination_account = '1001000100010001'
-ORDER BY transaction_date DESC
-LIMIT 5;
+-- SELECT t.*
+-- FROM transactions t
+-- WHERE source_account = '1001000100010001' OR destination_account = '1001000100010001'
+-- ORDER BY transaction_date DESC
+-- LIMIT 5;
 
--- نمایش مشتریانی که بیش از یک حساب فعال دارند
-SELECT 
-    c.customer_id,
-    c.first_name || ' ' || c.last_name AS customer_name,
-    c.phone,
-    COUNT(a.account_number) AS active_accounts
-FROM customer c
-JOIN account a ON c.customer_id = a.customer_id
-WHERE a.status = 'ACTIVE'
-GROUP BY c.customer_id, c.first_name, c.last_name, c.phone
-HAVING COUNT(a.account_number) > 1
-ORDER BY active_accounts DESC;
+-- -- نمایش مشتریانی که بیش از یک حساب فعال دارند
+-- SELECT 
+--     c.customer_id,
+--     c.first_name || ' ' || c.last_name AS customer_name,
+--     c.phone,
+--     COUNT(a.account_number) AS active_accounts
+-- FROM customer c
+-- JOIN account a ON c.customer_id = a.customer_id
+-- WHERE a.status = 'ACTIVE'
+-- GROUP BY c.customer_id, c.first_name, c.last_name, c.phone
+-- HAVING COUNT(a.account_number) > 1
+-- ORDER BY active_accounts DESC;
 
--- نمایش لیست تمام حساب‌هایی که موجودی آن‌ها کمتر از یک مقدار مشخص (مثلاً 500,000 تومان) است
-SELECT a.*
-FROM account a
-WHERE a.balance < 500000
-ORDER BY a.balance ASC;
+-- -- نمایش لیست تمام حساب‌هایی که موجودی آن‌ها کمتر از یک مقدار مشخص (مثلاً 500,000 تومان) است
+-- SELECT a.*
+-- FROM account a
+-- WHERE a.balance < 500000
+-- ORDER BY a.balance ASC;
 
---نمایش تعداد تراکنش‌های انجام شده در یک بازه زمانی مشخص)
-SELECT COUNT(*) AS transaction_count,
-    SUM(amount) AS total_amount
-FROM transactions
-WHERE transaction_date >= CURRENT_DATE - INTERVAL '400 days'AND status = 'COMPLETED'
+-- --نمایش تعداد تراکنش‌های انجام شده در یک بازه زمانی مشخص)
+-- SELECT COUNT(*) AS transaction_count,
+--     SUM(amount) AS total_amount
+-- FROM transactions
+-- WHERE transaction_date >= CURRENT_DATE - INTERVAL '400 days'AND status = 'COMPLETED'
