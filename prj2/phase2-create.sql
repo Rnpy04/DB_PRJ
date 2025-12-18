@@ -1,4 +1,4 @@
--- DROP TABLE IF EXISTS audit_log CASCADE;
+DROP TABLE IF EXISTS audit_log CASCADE;
 DROP TABLE IF EXISTS payment CASCADE;
 DROP TABLE IF EXISTS loan CASCADE;
 DROP TABLE IF EXISTS card CASCADE;
@@ -23,11 +23,11 @@ CREATE TABLE branch (
     phone VARCHAR(15) NOT NULL,
     working_hours VARCHAR(50) not null,
 
-    CONSTRAINT chk_phone_format CHECK (phone ~ '^\d{10,15}$'),
     CONSTRAINT fk_bank FOREIGN KEY (bank_id) 
         REFERENCES bank(bank_id) 
-        ON DELETE cascade,
+        ON DELETE cascade
         ON UPDATE cascade
+		
 );
 
 ALTER TABLE bank
@@ -48,8 +48,7 @@ CREATE TABLE customer (
     email VARCHAR(100),    
 
     CONSTRAINT chk_national_id CHECK (LENGTH(national_id) = 10),
-    CONSTRAINT chk_age CHECK (birth_date <= CURRENT_DATE - INTERVAL '18 years'),
-    CONSTRAINT chk_email_format CHECK (email ~* '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$')
+    CONSTRAINT chk_age CHECK (birth_date <= CURRENT_DATE - INTERVAL '18 years')
 
 );
 
@@ -72,7 +71,7 @@ CREATE TABLE employee (
         ON DELETE set null 
         ON UPDATE CASCADE,
     CONSTRAINT chk_emp_national_id CHECK (LENGTH(national_id) = 10),
-    CONSTRAINT chk_salary CHECK (salary > 0)
+    CONSTRAINT chk_salary CHECK (salary >= 0)
 );
 
 CREATE TABLE account (
@@ -132,6 +131,7 @@ CREATE TABLE card (
     card_type VARCHAR(15) NOT NULL,
     status VARCHAR(10) NOT NULL DEFAULT 'ACTIVE',
     account_number VARCHAR(16) NOT NULL,
+
     CONSTRAINT fk_card_account FOREIGN KEY (account_number) 
         REFERENCES account(account_number) 
         ON DELETE CASCADE 
@@ -154,6 +154,7 @@ CREATE TABLE loan (
     remaining_amount DECIMAL(15, 2) NOT NULL,
     customer_id INTEGER NOT NULL,
     account_number VARCHAR(16) NOT NULL,
+    
     CONSTRAINT fk_loan_customer FOREIGN KEY (customer_id) 
         REFERENCES customer(customer_id) 
         ON DELETE RESTRICT 
