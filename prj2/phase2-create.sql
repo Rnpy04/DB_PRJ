@@ -19,7 +19,8 @@ CREATE TABLE branch (
     branch_code VARCHAR(10) PRIMARY KEY,
     branch_name VARCHAR(100) NOT NULL,
     bank_id VARCHAR(10) NOT NULL,
-    address TEXT NOT NULL,
+    city TEXT NOT NULL,
+    street TEXT NOT NULL,
     phone VARCHAR(15) NOT NULL,
     working_hours VARCHAR(50) not null,
 
