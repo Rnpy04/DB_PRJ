@@ -1,3 +1,6 @@
+DROP OWNED BY role_bank_admin;
+DROP OWNED BY role_branch_employee;
+
 DROP ROLE IF EXISTS role_bank_admin;
 DROP ROLE IF EXISTS role_branch_employee;
 
@@ -71,7 +74,8 @@ GRANT role_branch_employee TO employee_user1;
 
 CREATE USER employee_user2 WITH PASSWORD 'Employee2@20!';
 GRANT role_branch_employee TO employee_user2;
---------------------------------------------------------------------------------------------------
+
+--------------------------------------------
 
 SELECT 
     'role_bank_admin' AS role_name,
@@ -93,7 +97,6 @@ WHERE grantee = 'role_branch_employee'
 GROUP BY table_name
 ORDER BY table_name;
 
--- تست 3: لیست تمام نقش‌ها و اعضا
 SELECT 
     r.rolname AS role,
     m.rolname AS member
