@@ -1,7 +1,28 @@
 DROP VIEW IF EXISTS vw_customer_accounts_summary;
 DROP VIEW IF EXISTS vw_active_loans;
 DROP VIEW IF EXISTS vw_recent_transactions_30days;
+DROP VIEW IF EXISTS vw_active_accounts_basic;
 
+--4
+CREATE OR REPLACE VIEW vw_active_accounts_basic AS
+SELECT
+    -- a.account_number,
+    a.account_type as account_type,
+    a.balance as balance,
+    a.status as status,
+    a.opening_date as opening_date,
+
+    c.customer_id as customer_id,
+    -- c.first_name || ' ' || c.last_name AS customer_name,
+
+    b.branch_code as branch_code,
+    b.city AS city 
+FROM account a
+JOIN customer c ON a.customer_id = c.customer_id
+JOIN branch b ON a.branch_code = b.branch_code
+WHERE a.status = 'ACTIVE';
+
+--1
 -- خلاصه حساب‌های هر مشتری
 CREATE OR REPLACE VIEW vw_customer_accounts_summary AS
 SELECT 
@@ -17,13 +38,8 @@ SELECT
     MIN(opening_date) AS first_account_date,
     MAX(opening_date) AS latest_account_date,
     MAX(CASE WHEN status = 'ACTIVE' THEN opening_date END) AS latest_account_date_active
-FROM vw_customer_account_base
-GROUP BY customer_id
-
--- تست 
-SELECT * FROM vw_customer_accounts_summary 
-WHERE total_balance > 10000000
-ORDER BY total_balance DESC;
+FROM vw_active_accounts_basic
+GROUP BY customer_id;
 
 -- وام‌های فعال مشتریان
 CREATE OR REPLACE VIEW vw_active_loans AS
@@ -48,12 +64,6 @@ FROM loan l
 -- JOIN customer c ON l.customer_id = c.customer_id
 -- JOIN account a ON l.account_number = a.account_number
 WHERE l.status = 'ACTIVE';
-
-
--- تست 
-SELECT * FROM vw_active_loans 
-WHERE remaining_percentage > 80
-ORDER BY remaining_amount DESC;
 
 -- تراکنش‌های 30 روز اخیر
 CREATE OR REPLACE VIEW vw_recent_transactions_30days AS
@@ -80,20 +90,30 @@ LEFT JOIN account dst
 WHERE t.transaction_date >= CURRENT_DATE - INTERVAL '30 days'
   AND t.status = 'COMPLETED';
 
--- تست
-SELECT *
-FROM vw_recent_transactions_30days
 
+-- تست 
+-- SELECT * FROM vw_customer_accounts_summary  
+-- WHERE total_balance > 10000000
+-- ORDER BY total_balance DESC;
+
+-- -- تست 
+-- SELECT * FROM vw_active_loans 
+-- WHERE remaining_percentage > 80
+-- ORDER BY remaining_amount DESC;
+
+-- -- تست
+-- SELECT *
+-- FROM vw_recent_transactions_30days;
 
 
 -- بررسی ساختار view‌ها
-SELECT 
-    table_name,
-    view_definition
-FROM information_schema.views
-WHERE table_schema = 'public'
-  AND table_name LIKE 'vw_%'
-ORDER BY table_name;
+-- SELECT 
+--     table_name,
+--     view_definition
+-- FROM information_schema.views
+-- WHERE table_schema = 'public'
+--   AND table_name LIKE 'vw_%'
+-- ORDER BY table_name;
 
 -- -- تحلیل عملکرد View 1
 -- EXPLAIN ANALYZE
@@ -109,22 +129,3 @@ ORDER BY table_name;
 -- EXPLAIN ANALYZE
 -- SELECT * FROM vw_recent_transactions_30days
 -- WHERE transaction_type = 'TRANSFER';
-
---4
-CREATE OR REPLACE VIEW vw_active_accounts_basic AS
-SELECT
-    -- a.account_number,
-    a.account_type as account_type,
-    a.balance as balance,
-    a.status as status,
-    a.opening_date as opening_date,
-
-    c.customer_id as customer_id,
-    -- c.first_name || ' ' || c.last_name AS customer_name,
-
-    b.branch_code as branch_code,
-    b.city AS city 
-FROM account a
-JOIN customer c ON a.customer_id = c.customer_id
-JOIN branch b ON a.branch_code = b.branch_code
-WHERE a.status = 'ACTIVE';
