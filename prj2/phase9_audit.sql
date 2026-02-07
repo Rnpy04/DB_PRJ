@@ -61,8 +61,8 @@ BEGIN
         new_values,
         changed_by,
         changed_at,
-        client_ip,        
-        application_name  
+        -- client_ip,        
+        -- application_name  
     )
     VALUES (
         TG_TABLE_NAME,
@@ -75,8 +75,8 @@ BEGIN
         v_new_data,
         CURRENT_USER,
         CURRENT_TIMESTAMP,
-        inet_client_addr(),           
-        current_setting('application_name')
+        -- inet_client_addr(),           
+        -- current_setting('application_name')
     );
 
     IF (TG_OP = 'DELETE') THEN
