@@ -1,4 +1,16 @@
 --نکته جالب اینکه هر بار ران میشه حتی اگه انجام نشه بازم ایدی میسازه برای سریالی ها
+--اگر PRIMARY KEY یا UNIQUE نداشته دوباره بزنی دوبار اد میشه
+DELETE FROM payment;
+DELETE FROM loan;
+DELETE FROM card;
+DELETE FROM transactions;
+DELETE FROM account;
+DELETE FROM employee;
+DELETE FROM customer;
+DELETE FROM branch;
+DELETE FROM bank;
+ALTER SEQUENCE customer_customer_id_seq RESTART WITH 1;
+
 INSERT INTO bank (bank_id, bank_name) VALUES
 ('B001', 'بانک ملی ایران'),
 ('B002', 'بانک تجارت'),
@@ -134,10 +146,10 @@ INSERT INTO payment (payment_type, amount, payment_date, bill_number, status, de
 
 -- TEST QUERIES
 --  نمایش اطلاعات تمام حساب‌های متعلق به یک مشتری مشخص
-SELECT a.*
-FROM account a
-JOIN customer c ON a.customer_id = c.customer_id
-WHERE c.customer_id = 1;
+-- SELECT a.*
+-- FROM account a
+-- JOIN customer c ON a.customer_id = c.customer_id
+-- WHERE c.customer_id = 1;
 
 -- نمایش 5 تراکنش اخیر مربوط به یک حساب مشخص بر اساس تاریخ تراکنش
 -- SELECT t.*
