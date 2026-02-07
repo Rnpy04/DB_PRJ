@@ -23,9 +23,6 @@ BEGIN
         RAISE EXCEPTION 'مبلغ انتقال باید بزرگتر از صفر باشد';
     END IF;
 
-    IF v_src_balance < p_amount THEN
-        RAISE EXCEPTION 'موجودی ناکافی';
-    END IF;
     -------------------------------------------
     -- بررسی حساب‌ها 
     IF p_src = p_dest THEN
@@ -40,6 +37,9 @@ BEGIN
         RAISE EXCEPTION 'حساب مبدا یافت نشد';
     END IF;
 
+    IF v_src_balance < p_amount THEN
+        RAISE EXCEPTION 'موجودی ناکافی';
+    END IF;
     IF v_src_status != 'ACTIVE' THEN
         RAISE EXCEPTION 'حساب مبدا غیرفعال است. وضعیت: %', v_src_status;
     END IF;
