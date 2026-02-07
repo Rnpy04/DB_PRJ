@@ -60,7 +60,7 @@ BEGIN
         old_values,
         new_values,
         changed_by,
-        changed_at,
+        changed_at
         -- client_ip,        
         -- application_name  
     )
@@ -74,7 +74,7 @@ BEGIN
         v_old_data,
         v_new_data,
         CURRENT_USER,
-        CURRENT_TIMESTAMP,
+        CURRENT_TIMESTAMP
         -- inet_client_addr(),           
         -- current_setting('application_name')
     );
